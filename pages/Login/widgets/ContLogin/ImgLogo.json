@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 9,
+  "boxShadow": "none",
+  "defaultImage": "https://assets.appsmith.com/widgets/default.png",
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "enableDownload": false,
+  "enableRotation": false,
+  "flexVerticalAlignment": "start",
+  "image": "",
+  "imageShape": "RECTANGLE",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "10ig8oi5gb",
+  "leftColumn": 26,
+  "maxZoomLevel": 1,
+  "mobileBottomRow": 10,
+  "mobileLeftColumn": 13,
+  "mobileRightColumn": 25,
+  "mobileTopRow": 0,
+  "needsErrorInfo": false,
+  "objectFit": "cover",
+  "originalBottomRow": 13,
+  "originalTopRow": 9,
+  "parentColumnSpace": 5.025390625,
+  "parentId": "kkk5fr9qba",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "rightColumn": 38,
+  "topRow": 5,
+  "type": "IMAGE_WIDGET",
+  "version": 1,
+  "widgetId": "vw04qkck5t",
+  "widgetName": "ImgLogo"
+}

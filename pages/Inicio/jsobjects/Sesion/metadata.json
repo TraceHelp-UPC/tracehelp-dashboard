@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "6aebd3a008bd09fa65dae856_d82dd810-a17d-4f21-a24d-9209067b19e0",
+  "id": "Inicio_Sesion",
+  "unpublishedCollection": {
+    "name": "Sesion",
+    "pageId": "Inicio",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      }
+    ]
+  }
+}

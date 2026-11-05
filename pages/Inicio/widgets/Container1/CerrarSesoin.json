@@ -1,0 +1,52 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 44,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "50bphmaukz",
+  "leftColumn": 17,
+  "minWidth": 120,
+  "mobileBottomRow": 43,
+  "mobileLeftColumn": 17,
+  "mobileRightColumn": 33,
+  "mobileTopRow": 39,
+  "needsErrorInfo": false,
+  "onClick": "{{Sesion.cerrarSesion();}}",
+  "originalBottomRow": 43,
+  "originalTopRow": 39,
+  "parentColumnSpace": 19.1904296875,
+  "parentId": "4mnh61mfxl",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 33,
+  "text": "Cerrar sesión",
+  "topRow": 40,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "ztcnozhp03",
+  "widgetName": "CerrarSesoin"
+}

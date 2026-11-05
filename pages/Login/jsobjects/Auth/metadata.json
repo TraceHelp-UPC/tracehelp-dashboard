@@ -1,0 +1,24 @@
+{
+  "gitSyncId": "6aebd3a008bd09fa65dae856_c47b55f1-d481-4f83-8e58-47c68eaa6894",
+  "id": "Login_Auth",
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "Login",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      },
+      {
+        "name": "PORTAL_URL",
+        "value": "'https://app.appsmith.com/app/tracehelp-portal/login-6aeb2fec668f2711775d68eb'"
+      },
+      {
+        "name": "DASHBOARD_URL",
+        "value": "'https://app.appsmith.com/app/tracehelp-dashboard/login-6aebd3a008bd09fa65dae85a'"
+      }
+    ]
+  }
+}

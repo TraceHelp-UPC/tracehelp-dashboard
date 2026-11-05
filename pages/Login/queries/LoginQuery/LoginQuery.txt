@@ -1,0 +1,4 @@
+     {
+       "email": "{{InputEmail.text.trim()}}",
+       "password": "{{InputPassword.text}}"
+     }
