@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "6aee82833657f23cf388f691_e9f3e775-2c34-4b67-bd39-b0cdf28028fb",
+  "id": "Mesa de ayuda_MesaAyuda",
+  "unpublishedCollection": {
+    "name": "MesaAyuda",
+    "pageId": "Mesa de ayuda",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "PESTANAS",
+        "value": "{\n  'Mi cola': 'mine',\n  'Pendientes de asignación': 'unassigned',\n  'Escalados': 'escalated'\n}"
+      },
+      {
+        "name": "ID_REFRESCO",
+        "value": "'refresco-mesa'"
+      }
+    ]
+  }
+}
