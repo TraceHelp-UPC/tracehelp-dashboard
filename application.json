@@ -31,6 +31,10 @@
     {
       "id": "Base de conocimiento",
       "isDefault": false
+    },
+    {
+      "id": "Mesa de ayuda",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
