@@ -1,0 +1,24 @@
+{
+  "gitSyncId": "6aebd3a008bd09fa65dae856_e22adb24-9915-45bb-b29f-812ad98305c0",
+  "id": "Base de conocimiento_BaseConocimiento",
+  "unpublishedCollection": {
+    "name": "BaseConocimiento",
+    "pageId": "Base de conocimiento",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "MAX_BYTES",
+        "value": "25 * 1024 * 1024"
+      },
+      {
+        "name": "EXTENSIONES",
+        "value": "['.pdf', '.md', '.markdown']"
+      },
+      {
+        "name": "ID_SEGUIMIENTO",
+        "value": "'seguimiento-manuales'"
+      }
+    ]
+  }
+}
