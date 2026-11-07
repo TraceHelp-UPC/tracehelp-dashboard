@@ -1,0 +1,60 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 58,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": "{{(ListarManualesQuery.data)}}",
+  "key": "h5z31frcac",
+  "leftColumn": 24,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 58,
+  "mobileLeftColumn": 24,
+  "mobileRightColumn": 40,
+  "mobileTopRow": 54,
+  "needsErrorInfo": false,
+  "originalBottomRow": 58,
+  "originalTopRow": 53,
+  "overflow": "NONE",
+  "parentColumnSpace": 19.546875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 40,
+  "shouldTruncate": false,
+  "text": "Aún no hay manuales. Sube el primero para que la IA pueda responder.\n",
+  "textAlign": "CENTER",
+  "textColor": "#231F20",
+  "topRow": 53,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "f9llp9brxq",
+  "widgetName": "TxtVacio"
+}

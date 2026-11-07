@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "6aebd3a008bd09fa65dae856_0c17d202-060c-4ab4-b1d9-7cd0980877cd",
+  "id": "Base de conocimiento_Sesion",
+  "unpublishedCollection": {
+    "name": "Sesion",
+    "pageId": "Base de conocimiento",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      }
+    ]
+  }
+}
