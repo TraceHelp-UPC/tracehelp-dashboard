@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 58,
+  "bottomRow": 60,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -27,7 +27,7 @@
   "fontSize": "1rem",
   "fontStyle": "BOLD",
   "isLoading": false,
-  "isVisible": "{{(ListarManualesQuery.data)}}",
+  "isVisible": "{{ (ListarManualesQuery.data || []).length === 0 }}",
   "key": "h5z31frcac",
   "leftColumn": 24,
   "maxDynamicHeight": 9000,
