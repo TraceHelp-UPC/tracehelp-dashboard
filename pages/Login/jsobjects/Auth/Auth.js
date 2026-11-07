@@ -46,6 +46,6 @@ export default {
     await storeValue('accessToken', res.access_token);
     await storeValue('refreshToken', res.refresh_token);
     await storeValue('user', res.user);
-    navigateTo('Inicio');
+    navigateTo((res.user.permissions || []).includes('tickets:manage') ? 'Mesa de ayuda' : 'Inicio');
   }
 }

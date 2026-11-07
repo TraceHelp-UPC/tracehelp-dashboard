@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "6aee82833657f23cf388f691_eb2a2282-8cb5-44bd-8cad-29884cdb10aa",
+  "id": "Mesa de ayuda_Sesion",
+  "unpublishedCollection": {
+    "name": "Sesion",
+    "pageId": "Mesa de ayuda",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      }
+    ]
+  }
+}

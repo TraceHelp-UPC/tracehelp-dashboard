@@ -1,0 +1,1 @@
+{"status": "ASSIGNED_L1", "reason": "Tomado desde la Mesa de ayuda"}

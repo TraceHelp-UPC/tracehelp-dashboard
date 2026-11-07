@@ -34,7 +34,7 @@
           "value": "Bearer {{appsmith.store.accessToken}}"
         }
       ],
-      "httpMethod": "GET",
+      "httpMethod": "POST",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
       "path": "/workspaces/{{appsmith.store.user?.workspace_id}}/documents",
