@@ -21,7 +21,7 @@
       "httpMethod": "GET",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/{{this.params.id}}/evidences/{{this.params.evidenceId}}",
+      "path": "/tickets/{{this.params.id}}/evidences/{{this.params.evidenceId}}",
       "pluginSpecifiedTemplates": [
         {
           "value": true
