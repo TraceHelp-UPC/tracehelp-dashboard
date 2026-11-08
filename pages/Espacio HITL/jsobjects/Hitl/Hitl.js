@@ -34,12 +34,12 @@ export default {
         showAlert('El espacio HITL es solo para analistas y especialistas.', 'warning');
         return navigateTo('Inicio');
       }
+      if (!this.ticketId()) {
+        showAlert('Elige un ticket desde la Mesa de ayuda.', 'info');
+        return navigateTo('Mesa de ayuda');
+      }
     }
-    if (!this.ticketId()) {
-      showAlert('Elige un ticket desde la Mesa de ayuda.', 'info');
-      return navigateTo('Mesa de ayuda');
-    }
-    if (appsmith.store.accessToken) await this.cargar();
+    if (appsmith.store.accessToken && this.ticketId()) await this.cargar();
   },
 
   async cargar() {
@@ -88,7 +88,7 @@ export default {
     if (!o) return '';
     const codigos = o.error_codes.length ? o.error_codes.join(', ') : 'ninguno';
     const texto = o.legible ? (o.text || '') : 'La captura no se pudo leer.';
-    return `Lectura de la captura (OCR)\nCódigos de error: ${codigos}\n${texto}`;
+    return `Lectura de la captura (OCR)<br/>Códigos de error: ${codigos}<br/>${texto}`;
   },
 
   confianzaTexto() {
@@ -123,13 +123,13 @@ export default {
   },
 
   pasosTexto() {
-    return (this.respuesta().steps || []).map((s, i) => `${i + 1}. ${s}`).join('\n');
+    return (this.respuesta().steps || []).map((s, i) => `${i + 1}. ${s}`).join('<br/>');
   },
 
   fuentesTexto() {
     const fuentes = DiagnosticoQuery.data?.ai_answer?.sources || [];
     if (!fuentes.length) return '';
-    return 'Fuentes:\n' + fuentes.map(f => `[${f.reference}] ${f.citation} · similitud ${f.similarity}`).join('\n');
+    return 'Fuentes:<br/>' + fuentes.map(f => `[${f.reference}] ${f.citation} · similitud ${f.similarity}`).join('<br/>');
   },
 
   motivoSinRespuesta() {
@@ -194,18 +194,18 @@ export default {
   },
 
   abrirEditar() {
-    resetWidget('InputResumenEditado', true);
-    resetWidget('InputPasosEditados', true);
+    resetWidget('InputResumenEditado_', true);
+    resetWidget('InputResumenEditado_Copy', true);
     showModal(ModalEditar.name);
   },
 
   async editar() {
-    const steps = (InputPasosEditados.text || '').split('\n').map(s => s.trim()).filter(Boolean);
-    await this.revisar({ decision: 'EDIT_AND_APPROVE', summary: InputResumenEditado.text, steps }, 'Respuesta editada y aprobada.', ModalEditar.name);
+    const steps = (InputResumenEditado_Copy.text || '').split('\n').map(s => s.trim()).filter(Boolean);
+    await this.revisar({ decision: 'EDIT_AND_APPROVE', summary: InputResumenEditado_.text, steps }, 'Respuesta editada y aprobada.', ModalEditar.name);
   },
 
   async rechazar() {
-    await this.revisar({ decision: 'REJECT', reason: InputMotivoRechazo.text }, 'Respuesta rechazada. Ahora responde manualmente o escala el ticket.', ModalRechazar.name);
+    await this.revisar({ decision: 'REJECT', reason: Input1.text }, 'Respuesta rechazada. Ahora responde manualmente o escala el ticket.', ModalRechazar.name);
   },
 
   async responder() {
