@@ -35,6 +35,10 @@
     {
       "id": "Mesa de ayuda",
       "isDefault": false
+    },
+    {
+      "id": "Espacio HITL",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

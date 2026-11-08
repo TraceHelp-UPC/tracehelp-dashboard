@@ -132,13 +132,8 @@ export default {
     await this.refrescar();
   },
 
-  async verDetalle(fila) {
-    try {
-      await this.ejecutar(DetalleQuery, { id: fila._id });
-      showModal('ModalDetalle');
-    } catch (e) {
-      showAlert(this.detalle(DetalleQuery, 'No pudimos abrir el ticket.'), 'error');
-    }
+  verDetalle(fila) {
+    navigateTo('Espacio HITL', { ticketId: fila._id }, 'SAME_WINDOW');
   },
 
   antiguedad(fecha) {

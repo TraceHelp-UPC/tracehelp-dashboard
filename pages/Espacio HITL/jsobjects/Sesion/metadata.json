@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "6af000de3e9d87d8f2d37a1c_bf55f8cf-ce69-4c3f-a990-70b5c75e2b7a",
+  "id": "Espacio HITL_Sesion",
+  "unpublishedCollection": {
+    "name": "Sesion",
+    "pageId": "Espacio HITL",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      }
+    ]
+  }
+}
