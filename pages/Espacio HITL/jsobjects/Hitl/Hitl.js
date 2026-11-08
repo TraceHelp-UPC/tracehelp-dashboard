@@ -58,6 +58,11 @@ export default {
         showAlert(this.detalle(DiagnosticoQuery, 'No pudimos cargar el diagnóstico.'), 'error');
       }
     }
+    try {
+      await this.ejecutar(HistorialQuery, { id });
+    } catch (e) {
+      /* El historial es complementario; si falla no bloquea el panel HITL */
+    }
     const primera = (TicketQuery.data?.evidences || [])[0];
     if (primera) await this.cargarCaptura(primera.id);
   },
@@ -80,7 +85,8 @@ export default {
   meta() {
     const t = TicketQuery.data;
     if (!t) return '';
-    return `Estado: ${t.status} · Prioridad: ${t.priority} · Solicitante: ${t.reporter_name || '—'} · Responsable: ${t.assigned_analyst_name || 'sin asignar'}`;
+    const cat = t.category ? ` · Categoría: ${t.category}` : '';
+    return `Estado: ${t.status} · Prioridad: ${t.priority}${cat} · Solicitante: ${t.reporter_name || '—'} · Responsable: ${t.assigned_analyst_name || 'sin asignar'}`;
   },
 
   ocrTexto() {
@@ -141,6 +147,7 @@ export default {
   bitacora() {
     const t = TicketQuery.data;
     const d = DiagnosticoQuery.data;
+    const h = HistorialQuery.data;
     if (!t) return [];
     const fecha = f => new Date(f).toLocaleString('es-PE', { dateStyle: 'short', timeStyle: 'short' });
     const eventos = [{ _orden: t.created_at, Fecha: fecha(t.created_at), Quién: t.reporter_name || 'Colaborador', Evento: 'Registró el incidente' }];
@@ -151,6 +158,15 @@ export default {
         eventos.push({ _orden: d.review.reviewed_at, Fecha: fecha(d.review.reviewed_at), Quién: d.review.reviewer_name || 'Analista', Evento: `${this.estadoRevisionTexto()}${nota}` });
       }
     }
+    (h?.items || []).forEach(item => {
+      const motivo = item.reason ? ` — Motivo: ${item.reason}` : '';
+      eventos.push({
+        _orden: item.changed_at,
+        Fecha: fecha(item.changed_at),
+        Quién: item.changed_by_name || 'Sistema',
+        Evento: `Estado: ${item.previous_status} → ${item.new_status}${motivo}`,
+      });
+    });
     (t.comments || []).forEach(c => eventos.push({
       _orden: c.created_at,
       Fecha: fecha(c.created_at),
@@ -160,7 +176,89 @@ export default {
     return eventos.sort((a, b) => new Date(a._orden) - new Date(b._orden)).map(({ _orden, ...e }) => e);
   },
 
-  // ---------- Acciones
+  // ---------- Permisos y visibilidad de controles de estado (US14 · T44)
+  tienePermiso(permiso) {
+    return (appsmith.store.user?.permissions || []).includes(permiso);
+  },
+
+  puedeEscalar() {
+    return TicketQuery.data?.status === 'ASSIGNED_L1' && this.tienePermiso('tickets:escalate');
+  },
+
+  puedeDevolver() {
+    const st = TicketQuery.data?.status;
+    if (st === 'ASSIGNED_L1') return this.tienePermiso('tickets:manage');
+    if (st === 'ESCALATED_L2') return this.tienePermiso('tickets:resolve_escalated');
+    return false;
+  },
+
+  puedeResolverEstado() {
+    const st = TicketQuery.data?.status;
+    if (st === 'ASSIGNED_L1') return this.tienePermiso('tickets:manage');
+    if (st === 'ESCALATED_L2') return this.tienePermiso('tickets:resolve_escalated');
+    return false;
+  },
+
+  puedeRetomar() {
+    const st = TicketQuery.data?.status;
+    return (st === 'OPEN' || st === 'REOPENED') && this.tienePermiso('tickets:manage');
+  },
+
+  async cambiarEstado(targetStatus, reason, modal) {
+    try {
+      await this.ejecutar(CambiarEstadoQuery, {
+        id: this.ticketId(),
+        body: { status: targetStatus, reason: (reason || '').trim() || null },
+      });
+      if (modal) closeModal(modal);
+      showAlert(`Estado actualizado a ${targetStatus}.`, 'success');
+    } catch (e) {
+      if (this.esCodigo(CambiarEstadoQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+      showAlert(this.detalle(CambiarEstadoQuery, 'No pudimos cambiar el estado del ticket.'), this.esCodigo(CambiarEstadoQuery, 4) ? 'warning' : 'error');
+      return;
+    }
+    await this.cargar();
+  },
+
+  abrirEscalar() {
+    resetWidget('InputMotivoEscalar', true);
+    showModal(ModalEscalar.name);
+  },
+
+  async confirmarEscalar() {
+    const motivo = (InputMotivoEscalar.text || '').trim();
+    if (!motivo) {
+      showAlert('Ingresa el motivo para escalar el ticket a Nivel 2.', 'warning');
+      return;
+    }
+    await this.cambiarEstado('ESCALATED_L2', motivo, ModalEscalar.name);
+  },
+
+  abrirDevolver() {
+    resetWidget('InputMotivoDevolver', true);
+    showModal(ModalDevolver.name);
+  },
+
+  async confirmarDevolver() {
+    const motivo = (InputMotivoDevolver.text || '').trim();
+    if (!motivo) {
+      showAlert('Ingresa el motivo para devolver el ticket.', 'warning');
+      return;
+    }
+    const destino = TicketQuery.data?.status === 'ESCALATED_L2' ? 'ASSIGNED_L1' : 'PENDING_ASSIGNMENT';
+    await this.cambiarEstado(destino, motivo, ModalDevolver.name);
+  },
+
+  async resolverDirecto() {
+    await this.cambiarEstado('RESOLVED', 'Resuelto por soporte desde consola HITL');
+  },
+
+  async retomar() {
+    const destino = TicketQuery.data?.status === 'OPEN' ? 'PENDING_ASSIGNMENT' : 'ASSIGNED_L1';
+    await this.cambiarEstado(destino, 'Retomado por analista desde consola HITL');
+  },
+
+  // ---------- Acciones HITL
   puede(accion) {
     return (DiagnosticoQuery.data?.allowed_actions || []).includes(accion);
   },
