@@ -3,7 +3,7 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 16,
+  "bottomRow": 27,
   "boxShadow": "none",
   "defaultText": "{{DiagnosticoQuery.data?.ai_answer?.summary || ''}}",
   "dynamicBindingPathList": [

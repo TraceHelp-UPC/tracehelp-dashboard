@@ -3,7 +3,7 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 27,
+  "bottomRow": 59,
   "boxShadow": "none",
   "defaultText": "{{(DiagnosticoQuery.data?.ai_answer?.steps || []).join('\\n')}}",
   "dynamicBindingPathList": [
@@ -52,7 +52,7 @@
   "rightColumn": 39,
   "shouldAllowAutofill": false,
   "showStepArrows": false,
-  "topRow": 17,
+  "topRow": 28,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "uttwc1ovk2",

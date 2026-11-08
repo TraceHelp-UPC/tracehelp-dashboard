@@ -3,6 +3,7 @@
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 27,
+  "bottomRowBeforeCollapse": 27,
   "boxShadow": "none",
   "defaultOptionValue": "{{ ((options, serverSideFiltering) => (  Hitl.opcionesCaptura()[0]?.value ))(SelectCaptura.options, SelectCaptura.serverSideFiltering) }}",
   "dynamicBindingPathList": [
@@ -74,6 +75,7 @@
   "serverSideFiltering": false,
   "sourceData": "{{Hitl.opcionesCaptura()}}",
   "topRow": 20,
+  "topRowBeforeCollapse": 20,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "fuwohv07u1",
