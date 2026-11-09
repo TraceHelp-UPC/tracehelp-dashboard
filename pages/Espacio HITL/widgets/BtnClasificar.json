@@ -1,0 +1,60 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 14,
+  "boxShadow": "none",
+  "buttonColor": "#4F46E5",
+  "buttonVariant": "SECONDARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": "{{Hitl.puedeClasificar()}}",
+  "key": "k_btnclasif01",
+  "leftColumn": 51,
+  "minWidth": 120,
+  "mobileBottomRow": 14,
+  "mobileLeftColumn": 13,
+  "mobileRightColumn": 25,
+  "mobileTopRow": 10,
+  "needsErrorInfo": false,
+  "onClick": "{{Hitl.abrirClasificacion()}}",
+  "originalBottomRow": 14,
+  "originalTopRow": 10,
+  "parentColumnSpace": 19.546875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "Corregir clasificación",
+  "topRow": 10,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "btnclasif01",
+  "widgetName": "BtnClasificar"
+}
