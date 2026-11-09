@@ -258,6 +258,42 @@ export default {
     await this.cambiarEstado(destino, 'Retomado por analista desde consola HITL');
   },
 
+
+  // ---------- Corrección de clasificación (US27 · T42)
+  puedeClasificar() {
+    return Boolean(TicketQuery.data?.id) && this.tienePermiso('tickets:manage');
+  },
+
+  abrirClasificacion() {
+    resetWidget('SelectCategoriaCorr', true);
+    resetWidget('SelectPrioridadCorr', true);
+    resetWidget('InputMotivoClasif', true);
+    showModal(ModalClasificar.name);
+  },
+
+  async confirmarClasificacion() {
+    const category = SelectCategoriaCorr.selectedOptionValue || TicketQuery.data?.category || null;
+    const priority = SelectPrioridadCorr.selectedOptionValue || TicketQuery.data?.priority || null;
+    const reason = (InputMotivoClasif.text || '').trim() || 'Ajuste de clasificación por analista';
+    if (!category && !priority) {
+      showAlert('Selecciona al menos una categoría o prioridad.', 'warning');
+      return;
+    }
+    try {
+      await this.ejecutar(ClasificacionQuery, {
+        id: this.ticketId(),
+        body: { category, priority, reason },
+      });
+      closeModal(ModalClasificar.name);
+      showAlert('Clasificación del ticket actualizada.', 'success');
+    } catch (e) {
+      if (this.esCodigo(ClasificacionQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+      showAlert(this.detalle(ClasificacionQuery, 'No pudimos actualizar la clasificación.'), 'warning');
+      return;
+    }
+    await this.cargar();
+  },
+
   // ---------- Acciones HITL
   puede(accion) {
     return (DiagnosticoQuery.data?.allowed_actions || []).includes(accion);
