@@ -22,7 +22,7 @@
   "isLoading": false,
   "isRequired": true,
   "isVisible": true,
-  "key": "in_inescl1001",
+  "key": "k_inclas1001",
   "label": "Motivo (obligatorio)",
   "labelAlignment": "left",
   "labelPosition": "Top",
@@ -52,6 +52,6 @@
   "topRow": 14,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
-  "widgetId": "inescl1001",
+  "widgetId": "inclas1001",
   "widgetName": "InputMotivoClasif"
 }

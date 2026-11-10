@@ -23,7 +23,7 @@
   "isDisabled": false,
   "isLoading": false,
   "isVisible": true,
-  "key": "ic_icescl1001",
+  "key": "k_icclas1001",
   "leftColumn": 58,
   "minWidth": 50,
   "mobileBottomRow": 4,
@@ -39,6 +39,6 @@
   "topRow": 0,
   "type": "ICON_BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "icescl1001",
+  "widgetId": "icclas1001",
   "widgetName": "BtnCerrarClasificar"
 }

@@ -20,7 +20,7 @@
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "t_txescl1001",
+  "key": "k_txclas1001",
   "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
@@ -43,6 +43,6 @@
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "txescl1001",
+  "widgetId": "txclas1001",
   "widgetName": "TxtTituloClasificar"
 }

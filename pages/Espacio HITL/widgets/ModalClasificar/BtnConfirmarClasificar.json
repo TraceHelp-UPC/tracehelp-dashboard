@@ -29,7 +29,7 @@
   "isDisabled": false,
   "isLoading": false,
   "isVisible": true,
-  "key": "b_btescl1001",
+  "key": "k_btclas1001",
   "leftColumn": 35,
   "minWidth": 120,
   "mobileBottomRow": 22,
@@ -51,6 +51,6 @@
   "topRow": 24,
   "type": "BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "btescl1001",
+  "widgetId": "btclas1001",
   "widgetName": "BtnConfirmarClasificar"
 }
