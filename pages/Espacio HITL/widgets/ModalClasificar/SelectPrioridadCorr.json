@@ -4,7 +4,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 13,
   "boxShadow": "none",
-  "defaultOptionValue": "{{ ((options, serverSideFiltering) => ( TicketQuery.data?.priority || 'MEDIUM' ))(SelectPrioridadCorr.options, SelectPrioridadCorr.serverSideFiltering) }}",
+  "defaultOptionValue": "{{ TicketQuery.data?.priority || 'MEDIUM' }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -14,6 +14,9 @@
     },
     {
       "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -51,8 +54,8 @@
   "mobileTopRow": 66,
   "needsErrorInfo": false,
   "onOptionChange": "",
-  "optionLabel": "name",
-  "optionValue": "label",
+  "optionLabel": "label",
+  "optionValue": "value",
   "originalBottomRow": 19,
   "originalTopRow": 12,
   "parentColumnSpace": 19.8125,
@@ -63,7 +66,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\": \"Baja (LOW)\", \"value\": \"LOW\"}, {\"label\": \"Media (MEDIUM)\", \"value\": \"MEDIUM\"}, {\"label\": \"Alta (HIGH)\", \"value\": \"HIGH\"}, {\"label\": \"Crítica (CRITICAL)\", \"value\": \"CRITICAL\"}]",
+  "sourceData": "{{ [{\"label\": \"Baja (LOW)\", \"value\": \"LOW\"}, {\"label\": \"Media (MEDIUM)\", \"value\": \"MEDIUM\"}, {\"label\": \"Alta (HIGH)\", \"value\": \"HIGH\"}, {\"label\": \"Crítica (CRITICAL)\", \"value\": \"CRITICAL\"}] }}",
   "topRow": 6,
   "type": "SELECT_WIDGET",
   "version": 1,
