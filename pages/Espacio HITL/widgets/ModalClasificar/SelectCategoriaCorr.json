@@ -4,7 +4,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 13,
   "boxShadow": "none",
-  "defaultOptionValue": "{{ ((options, serverSideFiltering) => ( TicketQuery.data?.category || 'Red/VPN' ))(SelectCategoriaCorr.options, SelectCategoriaCorr.serverSideFiltering) }}",
+  "defaultOptionValue": "{{ TicketQuery.data?.category || 'Red/VPN' }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -14,6 +14,9 @@
     },
     {
       "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -51,8 +54,8 @@
   "mobileTopRow": 66,
   "needsErrorInfo": false,
   "onOptionChange": "",
-  "optionLabel": "name",
-  "optionValue": "label",
+  "optionLabel": "label",
+  "optionValue": "value",
   "originalBottomRow": 19,
   "originalTopRow": 12,
   "parentColumnSpace": 19.8125,
@@ -63,7 +66,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 31,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\": \"Red/VPN\", \"value\": \"Red/VPN\"}, {\"label\": \"Correo\", \"value\": \"Correo\"}, {\"label\": \"Accesos\", \"value\": \"Accesos\"}, {\"label\": \"Hardware\", \"value\": \"Hardware\"}, {\"label\": \"Software\", \"value\": \"Software\"}, {\"label\": \"Otro\", \"value\": \"Otro\"}]",
+  "sourceData": "{{ [{\"label\": \"Red/VPN\", \"value\": \"Red/VPN\"}, {\"label\": \"Correo\", \"value\": \"Correo\"}, {\"label\": \"Accesos\", \"value\": \"Accesos\"}, {\"label\": \"Hardware\", \"value\": \"Hardware\"}, {\"label\": \"Software\", \"value\": \"Software\"}, {\"label\": \"Otro\", \"value\": \"Otro\"}] }}",
   "topRow": 6,
   "type": "SELECT_WIDGET",
   "version": 1,
