@@ -33,6 +33,8 @@
   "maxZoomLevel": 1,
   "needsErrorInfo": false,
   "objectFit": "contain",
+  "originalBottomRow": 43,
+  "originalTopRow": 19,
   "parentColumnSpace": 5.7958984375,
   "parentId": "r9mv35pq8s",
   "parentRowSpace": 10,

@@ -58,6 +58,8 @@
   "onOptionChange": "{{ Hitl.cargarCaptura() }}",
   "optionLabel": "label",
   "optionValue": "value",
+  "originalBottomRow": 18,
+  "originalTopRow": 11,
   "parentColumnSpace": 5.7958984375,
   "parentId": "r9mv35pq8s",
   "parentRowSpace": 10,

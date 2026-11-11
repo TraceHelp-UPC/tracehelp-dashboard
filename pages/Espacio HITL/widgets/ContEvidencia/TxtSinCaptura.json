@@ -34,6 +34,8 @@
   "minDynamicHeight": 4,
   "minWidth": 450,
   "needsErrorInfo": false,
+  "originalBottomRow": 48,
+  "originalTopRow": 44,
   "overflow": "NONE",
   "parentColumnSpace": 19.546875,
   "parentId": "r9mv35pq8s",
