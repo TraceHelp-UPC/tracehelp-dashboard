@@ -1,0 +1,48 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 27,
+  "boxShadow": "none",
+  "buttonColor": "#0B192C",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "manual",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": "{{(appsmith.store.user?.permissions || []).includes('kb:write')}}",
+  "key": "wqwj2yuk8f",
+  "leftColumn": 3,
+  "minWidth": 120,
+  "needsErrorInfo": false,
+  "onClick": "{{navigateTo('Base de conocimiento', {}, 'SAME_WINDOW');}}",
+  "parentColumnSpace": 4.782958984375,
+  "parentId": "zpcnaax4cj",
+  "parentRowSpace": 10,
+  "placement": "START",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 61,
+  "text": "Base de conocimiento",
+  "topRow": 23,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "hpyeozlx6o",
+  "widgetName": "NavKb"
+}

@@ -1,0 +1,48 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 22,
+  "boxShadow": "none",
+  "buttonColor": "#0B192C",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "headset",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": "{{(appsmith.store.user?.permissions || []).includes('tickets:manage')}}",
+  "key": "jxwhhurg75",
+  "leftColumn": 3,
+  "minWidth": 120,
+  "needsErrorInfo": false,
+  "onClick": "{{navigateTo('Mesa de ayuda', {}, 'SAME_WINDOW');}}",
+  "parentColumnSpace": 4.782958984375,
+  "parentId": "zpcnaax4cj",
+  "parentRowSpace": 10,
+  "placement": "START",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 61,
+  "text": "Mesa de ayuda",
+  "topRow": 18,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "u95pfjl695",
+  "widgetName": "NavMesa"
+}

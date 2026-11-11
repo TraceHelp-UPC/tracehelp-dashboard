@@ -1,0 +1,45 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 89,
+  "boxShadow": "none",
+  "buttonColor": "#0B192C",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "log-out",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "7ggdnj2q22",
+  "leftColumn": 3,
+  "minWidth": 120,
+  "needsErrorInfo": false,
+  "onClick": "{{Sesion.cerrarSesion();}}",
+  "parentColumnSpace": 4.782958984375,
+  "parentId": "myzyem80j2",
+  "parentRowSpace": 10,
+  "placement": "START",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 61,
+  "text": "Cerrar sesión",
+  "topRow": 85,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "qv1efjia1m",
+  "widgetName": "SbSalir"
+}

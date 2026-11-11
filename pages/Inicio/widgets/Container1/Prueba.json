@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 27,
+  "bottomRow": 6,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,39 +11,36 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
-  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicHeight": "FIXED",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
+  "fontSize": "1.5rem",
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
   "key": "zz1fzc42y6",
-  "leftColumn": 17,
+  "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 26,
-  "mobileLeftColumn": 17,
-  "mobileRightColumn": 33,
-  "mobileTopRow": 22,
   "needsErrorInfo": false,
-  "originalBottomRow": 27,
-  "originalTopRow": 22,
   "overflow": "NONE",
   "parentColumnSpace": 19.1904296875,
   "parentId": "4mnh61mfxl",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 33,
+  "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "BIENVENIDO AL DASHBOARD DE TRACEHELP",
+  "text": "Hola, {{appsmith.store.user?.full_name || ''}}",
   "textAlign": "LEFT",
-  "textColor": "#231F20",
-  "topRow": 22,
+  "textColor": "#0B192C",
+  "topRow": 1,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
