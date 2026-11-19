@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 46,
+  "bottomRow": 50,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -46,7 +46,7 @@
   "text": "{{(InputMensaje.text || '').length}}/2000 · {{SwNotaInterna.isSwitchedOn ? 'Nota interna: el colaborador NO la verá' : 'Mensaje visible para el colaborador'}}",
   "textAlign": "LEFT",
   "textColor": "{{SwNotaInterna.isSwitchedOn ? '#B45309' : '#64748B'}}",
-  "topRow": 43,
+  "topRow": 47,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

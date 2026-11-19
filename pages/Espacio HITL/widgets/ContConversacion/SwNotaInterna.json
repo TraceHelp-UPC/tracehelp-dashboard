@@ -16,8 +16,8 @@
   "alignWidget": "RIGHT",
   "bottomRow": 5,
   "topRow": 1,
-  "leftColumn": 42,
-  "rightColumn": 62,
+  "leftColumn": 36,
+  "rightColumn": 51,
   "defaultSwitchState": false,
   "dynamicBindingPathList": [
     {
@@ -35,7 +35,7 @@
   "inputType": "SWITCH",
   "isDirty": false,
   "isDisabled": false,
-  "isVisible": "{{Hitl.tienePermiso('tickets:manage')}}",
+  "isVisible": "{{Hitl.tienePermiso('tickets:manage') && !Hitl.ticketCerrado()}}",
   "isSwitchedOn": false,
   "key": "ooxxqtwio2",
   "label": "Nota interna",

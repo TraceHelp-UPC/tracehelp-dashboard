@@ -6,6 +6,15 @@
     "pageId": "Espacio HITL",
     "pluginId": "js-plugin",
     "pluginType": "JS",
-    "variables": []
+    "variables": [
+      {
+        "name": "_sondeando",
+        "value": "false"
+      },
+      {
+        "name": "_ticksSondeo",
+        "value": "0"
+      }
+    ]
   }
 }
