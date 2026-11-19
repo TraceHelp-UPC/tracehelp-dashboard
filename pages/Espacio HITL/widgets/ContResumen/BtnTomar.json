@@ -33,7 +33,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": "{{TicketQuery.data?.status === 'PENDING_ASSIGNMENT'}}",
+  "isVisible": "{{TicketQuery.data?.status === 'PENDING_ASSIGNMENT' && Hitl.puedeAtenderL1()}}",
   "key": "cg3nl376mh",
   "leftColumn": 2,
   "minWidth": 120,

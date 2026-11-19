@@ -16,12 +16,12 @@
         {
           "key": "file",
           "type": "File",
-          "value": "{{FilePickerManual.files}}"
+          "value": "{{this.params.archivo || FilePickerManual.files}}"
         },
         {
           "key": "title",
           "type": "Text",
-          "value": "{{InputTituloManual.text}}"
+          "value": "{{this.params.titulo !== undefined ? this.params.titulo : InputTituloManual.text}}"
         }
       ],
       "encodeParamsToggle": true,

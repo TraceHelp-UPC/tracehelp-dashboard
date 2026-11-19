@@ -199,6 +199,13 @@ export default {
     return false;
   },
 
+  // Transitorio (D18): 'tickets:attend_l1' aún no existe en el backend; mientras tanto
+  // 'tickets:escalate' (solo analista L1) lo sustituye. T82 lo reemplaza por 'tickets:attend_l1'.
+  puedeAtenderL1() {
+    const permisos = appsmith.store.user?.permissions || [];
+    return permisos.includes('tickets:attend_l1') || permisos.includes('tickets:escalate');
+  },
+
   puedeRetomar() {
     const st = TicketQuery.data?.status;
     return (st === 'OPEN' || st === 'REOPENED') && this.tienePermiso('tickets:manage');
@@ -212,6 +219,8 @@ export default {
       });
       if (modal) closeModal(modal);
       showAlert(`Estado actualizado a ${targetStatus}.`, 'success');
+      // Invalida los contadores de la Mesa de ayuda; ella los recalcula al abrir.
+      await removeValue('mesaMetricas');
     } catch (e) {
       if (this.esCodigo(CambiarEstadoQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
       showAlert(this.detalle(CambiarEstadoQuery, 'No pudimos cambiar el estado del ticket.'), this.esCodigo(CambiarEstadoQuery, 4) ? 'warning' : 'error');

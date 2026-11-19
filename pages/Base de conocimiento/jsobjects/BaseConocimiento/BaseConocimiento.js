@@ -1,7 +1,9 @@
 export default {
 	MAX_BYTES: 25 * 1024 * 1024,
 	EXTENSIONES: ['.pdf', '.md', '.markdown'],
+	MAX_ARCHIVOS: 10,
 	ID_SEGUIMIENTO: 'seguimiento-manuales',
+	subiendo: false,
 
 	tienePermiso() {
 		return (appsmith.store.user?.permissions || []).includes('kb:write');
@@ -34,14 +36,14 @@ export default {
 		return String(query.responseMeta?.statusCode || '').startsWith(String(codigo));
 	},
 
-	async ejecutar(query) {
+	async ejecutar(query, params) {
 		try {
-			return await query.run();
+			return await query.run(params);
 		} catch (e) {
 			if (!this.esCodigo(query, 401)) throw e;
 			const r = await RefreshQuery.run();
 			await storeValue('accessToken', r.access_token);
-			return await query.run();
+			return await query.run(params);
 		}
 	},
 
@@ -73,33 +75,75 @@ export default {
 		}, 5000, this.ID_SEGUIMIENTO);
 	},
 
-	validar() {
-		const f = (FilePickerManual.files || [])[0];
-		if (!f) return 'Selecciona un manual en PDF o Markdown.';
+	// "manual_de-vpn.pdf" -> "manual de vpn"
+	tituloDesde(nombre) {
+		return String(nombre || '').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+	},
+
+	validarArchivo(f) {
 		const nombre = (f.name || '').toLowerCase();
-		if (!this.EXTENSIONES.some(ext => nombre.endsWith(ext))) return `"${f.name}" no es PDF ni Markdown.`;
-		if (f.size && f.size > this.MAX_BYTES) return `"${f.name}" supera los 25 MB.`;
+		if (!this.EXTENSIONES.some(ext => nombre.endsWith(ext))) return 'no es PDF ni Markdown';
+		if (f.size && f.size > this.MAX_BYTES) return 'supera los 25 MB';
+		return null;
+	},
+
+	validar() {
+		const files = FilePickerManual.files || [];
+		if (!files.length) return 'Selecciona al menos un manual en PDF o Markdown.';
+		if (files.length > this.MAX_ARCHIVOS) return `Puedes subir hasta ${this.MAX_ARCHIVOS} manuales por tanda.`;
 		if ((InputTituloManual.text || '').length > 200) return 'El título no puede superar los 200 caracteres.';
 		return null;
 	},
 
+	// Sube los archivos seleccionados de uno en uno; un fallo no detiene a los demás
 	async subir() {
+		if (this.subiendo) return;
 		const error = this.validar();
 		if (error) {
 			showAlert(error, 'warning');
 			return;
 		}
-		const nombre = FilePickerManual.files[0].name;
+		const files = [...FilePickerManual.files];
+		const unico = files.length === 1;
+		const titulo = (InputTituloManual.text || '').trim();
+		const fallidos = [];
+		let subidos = 0;
+		this.subiendo = true;
 		try {
-			await this.ejecutar(SubirManualQuery);
-			showAlert(`Recibimos "${nombre}". Lo estamos procesando.`, 'success');
+			for (let i = 0; i < files.length; i++) {
+				const f = files[i];
+				await storeValue('progresoKb', `Subiendo ${i + 1} de ${files.length}: ${f.name}`);
+				const invalido = this.validarArchivo(f);
+				if (invalido) {
+					fallidos.push(`${f.name}: ${invalido}`);
+					continue;
+				}
+				const params = { archivo: f, titulo: unico && titulo ? titulo : this.tituloDesde(f.name) };
+				try {
+					await this.ejecutar(SubirManualQuery, params);
+					subidos++;
+				} catch (e) {
+					if (this.esCodigo(SubirManualQuery, 401)) {
+						await storeValue('progresoKb', '');
+						return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+					}
+					fallidos.push(`${f.name}: ${this.detalle(SubirManualQuery, 'error al subir')}`);
+				}
+			}
+		} finally {
+			this.subiendo = false;
+		}
+		await storeValue('progresoKb', '');
+		if (subidos) {
 			resetWidget('FilePickerManual', true);
 			resetWidget('InputTituloManual', true);
-			await this.cargar();
-		} catch (e) {
-			if (this.esCodigo(SubirManualQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
-			showAlert(this.detalle(SubirManualQuery, 'No pudimos subir el manual. Intenta de nuevo.'), 'error');
 		}
+		if (!fallidos.length) {
+			showAlert(`Se subieron ${subidos} de ${files.length} manuales. Los estamos procesando.`, 'success');
+		} else {
+			showAlert(`Se subieron ${subidos} de ${files.length}. Fallaron ${fallidos.length}: ${fallidos.join(' | ')}`, subidos ? 'warning' : 'error');
+		}
+		await this.cargar();
 	},
 
 	contar(estado) {

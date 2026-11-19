@@ -23,7 +23,7 @@
   "isRequired": false,
   "isVisible": true,
   "key": "fbscfhm10i",
-  "label": "Título (opcional)",
+  "label": "Título (opcional, solo si subes un archivo)",
   "labelAlignment": "left",
   "labelPosition": "Top",
   "labelStyle": "BOLD",
