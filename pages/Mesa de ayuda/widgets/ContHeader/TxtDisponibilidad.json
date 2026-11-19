@@ -1,0 +1,55 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "isLoading": false,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 5.025390625,
+  "parentId": "0fc9pu51eq",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "version": 1,
+  "bottomRow": 4,
+  "topRow": 1,
+  "leftColumn": 29,
+  "rightColumn": 41,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    },
+    {
+      "key": "isVisible"
+    },
+    {
+      "key": "textColor"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "0.75rem",
+  "fontStyle": "BOLD",
+  "isVisible": "{{MesaAyuda.puedeAtenderL1()}}",
+  "key": "nijxpthxfc",
+  "overflow": "NONE",
+  "shouldTruncate": false,
+  "text": "{{ appsmith.store.user?.availability_status === 'UNAVAILABLE' ? '▲ No disponible' : '● Disponible' }}",
+  "textAlign": "LEFT",
+  "textColor": "{{ appsmith.store.user?.availability_status === 'UNAVAILABLE' ? '#B45309' : '#047857' }}",
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "widgetId": "gzmay8dyro",
+  "widgetName": "TxtDisponibilidad"
+}

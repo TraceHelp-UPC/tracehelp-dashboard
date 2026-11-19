@@ -39,6 +39,7 @@ export default {
         return navigateTo('Mesa de ayuda');
       }
     }
+    if (appsmith.store.accessToken) await this.cargarCarga();
     if (appsmith.store.accessToken && this.ticketId()) await this.cargar();
   },
 
@@ -206,6 +207,37 @@ export default {
     return permisos.includes('tickets:attend_l1') || permisos.includes('tickets:escalate');
   },
 
+  // T74 (US16): la disponibilidad vive en appsmith.store.user.availability_status (la carga
+  // Sesion.verificar desde /auth/me en cada página, así persiste al navegar). Actualización
+  // optimista con reversión si el PATCH falla.
+  async cambiarDisponibilidad(disponible) {
+    const usuario = appsmith.store.user;
+    if (!usuario || !this.puedeAtenderL1()) return;
+    const nuevo = disponible ? 'AVAILABLE' : 'UNAVAILABLE';
+    const anterior = usuario.availability_status || 'AVAILABLE';
+    if (nuevo === anterior) return;
+    await storeValue('user', { ...usuario, availability_status: nuevo });
+    try {
+      await this.ejecutar(DisponibilidadQuery, { estado: nuevo });
+      showAlert(disponible ? 'Ahora estás disponible para recibir tickets.' : 'Ahora estás no disponible: no recibirás tickets nuevos.', 'success');
+    } catch (e) {
+      if (this.esCodigo(DisponibilidadQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+      await storeValue('user', { ...appsmith.store.user, availability_status: anterior });
+      showAlert(this.detalle(DisponibilidadQuery, 'No pudimos cambiar tu disponibilidad.'), 'error');
+    }
+  },
+
+  // T74: carga actual para la cabecera. Cuenta 'mine' (T72/T82 la afinarán a solo carga L1).
+  async cargarCarga() {
+    if (!this.puedeAtenderL1()) return;
+    try {
+      const r = await this.ejecutar(ConteoQuery, { ruta: 'queue?scope=mine&size=1' });
+      await storeValue('cargaL1', r.total);
+    } catch (e) {
+      await storeValue('cargaL1', null);
+    }
+  },
+
   puedeRetomar() {
     const st = TicketQuery.data?.status;
     return (st === 'OPEN' || st === 'REOPENED') && this.tienePermiso('tickets:manage');
@@ -221,6 +253,7 @@ export default {
       showAlert(`Estado actualizado a ${targetStatus}.`, 'success');
       // Invalida los contadores de la Mesa de ayuda; ella los recalcula al abrir.
       await removeValue('mesaMetricas');
+      await this.cargarCarga();
     } catch (e) {
       if (this.esCodigo(CambiarEstadoQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
       showAlert(this.detalle(CambiarEstadoQuery, 'No pudimos cambiar el estado del ticket.'), this.esCodigo(CambiarEstadoQuery, 4) ? 'warning' : 'error');

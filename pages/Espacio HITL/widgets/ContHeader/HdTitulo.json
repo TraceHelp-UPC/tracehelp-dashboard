@@ -32,7 +32,7 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 40,
+  "rightColumn": 24,
   "shouldTruncate": false,
   "text": "Espacio de trabajo HITL",
   "textAlign": "LEFT",
