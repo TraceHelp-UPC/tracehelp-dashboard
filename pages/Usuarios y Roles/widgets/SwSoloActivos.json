@@ -1,0 +1,54 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "alignWidget": "LEFT",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 21,
+  "defaultSwitchState": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "onChange"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onChange"
+    }
+  ],
+  "inputType": "SWITCH",
+  "isDirty": false,
+  "isDisabled": false,
+  "isLoading": false,
+  "isSwitchedOn": false,
+  "isVisible": true,
+  "key": "kusrswsolo006",
+  "label": "Solo activos",
+  "labelPosition": "Left",
+  "labelTextSize": "0.875rem",
+  "leftColumn": 46,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "onChange": "{{ UsuariosAdmin.filtrar() }}",
+  "parentColumnSpace": 19.8125,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "rightColumn": 54,
+  "topRow": 17,
+  "type": "SWITCH_WIDGET",
+  "version": 1,
+  "widgetId": "usrswsolo006",
+  "widgetName": "SwSoloActivos"
+}

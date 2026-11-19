@@ -48,6 +48,10 @@
     {
       "id": "Espacio HITL",
       "isDefault": false
+    },
+    {
+      "id": "Usuarios y Roles",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

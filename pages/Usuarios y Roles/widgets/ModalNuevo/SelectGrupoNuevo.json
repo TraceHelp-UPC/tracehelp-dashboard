@@ -1,0 +1,64 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 40,
+  "boxShadow": "none",
+  "defaultOptionValue": "\"\"",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": "{{ SelectRolNuevo.selectedOptionValue !== 'SPECIALIST_L2' }}",
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "kusrselect018",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Grupo especialista",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 19.8125,
+  "parentId": "usrcvmoda011",
+  "parentRowSpace": 10,
+  "placeholderText": "Solo para el rol Especialista L2",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "serverSideFiltering": false,
+  "sourceData": "{{ [{\"label\": \"Sin grupo\", \"value\": \"\"}, {\"label\": \"Redes\", \"value\": \"REDES\"}, {\"label\": \"Aplicaciones\", \"value\": \"APLICACIONES\"}, {\"label\": \"Infraestructura\", \"value\": \"INFRAESTRUCTURA\"}, {\"label\": \"Seguridad\", \"value\": \"SEGURIDAD\"}] }}",
+  "topRow": 34,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "usrselect018",
+  "widgetName": "SelectGrupoNuevo"
+}

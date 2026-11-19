@@ -1,0 +1,70 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 35,
+  "boxShadow": "none",
+  "defaultOptionValue": "{{ appsmith.store.usuarioEdicion?.specialist_group || '' }}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultOptionValue"
+    },
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "defaultOptionValue"
+    },
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": "{{ SelectRolEditar.selectedOptionValue !== 'SPECIALIST_L2' }}",
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "kusrselect038",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Grupo especialista",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 19.8125,
+  "parentId": "usrcvmoda031",
+  "parentRowSpace": 10,
+  "placeholderText": "Solo para el rol Especialista L2",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "serverSideFiltering": false,
+  "sourceData": "{{ [{\"label\": \"Sin grupo\", \"value\": \"\"}, {\"label\": \"Redes\", \"value\": \"REDES\"}, {\"label\": \"Aplicaciones\", \"value\": \"APLICACIONES\"}, {\"label\": \"Infraestructura\", \"value\": \"INFRAESTRUCTURA\"}, {\"label\": \"Seguridad\", \"value\": \"SEGURIDAD\"}] }}",
+  "topRow": 29,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "usrselect038",
+  "widgetName": "SelectGrupoEditar"
+}
