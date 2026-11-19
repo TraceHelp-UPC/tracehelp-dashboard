@@ -1,1 +1,1 @@
-{{ JSON.stringify(this.params.cambios) }}
+{{ this.params.cambios }}
