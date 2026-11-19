@@ -446,7 +446,7 @@
       "id": "customColumn1",
       "index": 10,
       "isCellEditable": false,
-      "isCellVisible": "{{(() => { const tableData = TablaCola.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( MesaAyuda.scope() === 'unassigned' )) :  MesaAyuda.scope() === 'unassigned'  })()}}",
+      "isCellVisible": "{{(() => { const tableData = TablaCola.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( MesaAyuda.scope() === 'unassigned' && MesaAyuda.puedeAtenderL1() )) :  MesaAyuda.scope() === 'unassigned' && MesaAyuda.puedeAtenderL1()  })()}}",
       "isDerived": true,
       "isDisabled": false,
       "isDiscardVisible": true,

@@ -199,6 +199,13 @@ export default {
     return false;
   },
 
+  // Transitorio (D18): 'tickets:attend_l1' aún no existe en el backend; mientras tanto
+  // 'tickets:escalate' (solo analista L1) lo sustituye. T82 lo reemplaza por 'tickets:attend_l1'.
+  puedeAtenderL1() {
+    const permisos = appsmith.store.user?.permissions || [];
+    return permisos.includes('tickets:attend_l1') || permisos.includes('tickets:escalate');
+  },
+
   puedeRetomar() {
     const st = TicketQuery.data?.status;
     return (st === 'OPEN' || st === 'REOPENED') && this.tienePermiso('tickets:manage');
