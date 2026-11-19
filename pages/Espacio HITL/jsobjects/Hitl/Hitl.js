@@ -212,6 +212,8 @@ export default {
       });
       if (modal) closeModal(modal);
       showAlert(`Estado actualizado a ${targetStatus}.`, 'success');
+      // Invalida los contadores de la Mesa de ayuda; ella los recalcula al abrir.
+      await removeValue('mesaMetricas');
     } catch (e) {
       if (this.esCodigo(CambiarEstadoQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
       showAlert(this.detalle(CambiarEstadoQuery, 'No pudimos cambiar el estado del ticket.'), this.esCodigo(CambiarEstadoQuery, 4) ? 'warning' : 'error');

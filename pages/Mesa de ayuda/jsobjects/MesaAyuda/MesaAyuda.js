@@ -30,7 +30,9 @@ export default {
       navigateTo('Inicio');
       return;
     }
-    await this.refrescar();
+    // Las métricas van primero: pueden venir invalidadas desde Espacio HITL.
+    await this.metricas();
+    await this.cargar();
     clearInterval(this.ID_REFRESCO);
     setInterval(() => this.refrescar(), 60000, this.ID_REFRESCO);
   },
