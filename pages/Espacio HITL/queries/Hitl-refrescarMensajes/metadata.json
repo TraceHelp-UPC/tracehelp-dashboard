@@ -6,7 +6,11 @@
   "unpublishedAction": {
     "actionConfiguration": {
       "encodeParamsToggle": true,
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "forzarTicket"
+        }
+      ],
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },

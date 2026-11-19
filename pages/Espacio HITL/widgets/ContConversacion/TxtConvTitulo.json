@@ -32,7 +32,7 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 24,
+  "rightColumn": 26,
   "shouldTruncate": false,
   "text": "Conversación del ticket",
   "textAlign": "LEFT",

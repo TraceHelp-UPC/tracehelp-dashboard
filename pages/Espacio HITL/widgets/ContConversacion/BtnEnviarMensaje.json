@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 46,
+  "bottomRow": 50,
   "boxShadow": "none",
   "buttonColor": "{{SwNotaInterna.isSwitchedOn ? '#F59E0B' : '#2563EB'}}",
   "buttonVariant": "PRIMARY",
@@ -47,7 +47,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "text": "{{SwNotaInterna.isSwitchedOn ? 'Guardar nota interna' : 'Enviar mensaje'}}",
-  "topRow": 42,
+  "topRow": 46,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "b5qmrfdu2r",

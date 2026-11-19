@@ -52,7 +52,7 @@
     ],
     "name": "MensajesQuery",
     "pageId": "Espacio HITL",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

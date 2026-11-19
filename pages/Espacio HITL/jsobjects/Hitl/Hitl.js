@@ -1,4 +1,7 @@
 export default {
+  _sondeando: false,
+  _ticksSondeo: 0,
+
   ticketId() {
     return appsmith.URL.queryParams.ticketId;
   },
@@ -41,8 +44,8 @@ export default {
     }
     if (appsmith.store.accessToken) await this.cargarCarga();
     if (appsmith.store.accessToken && this.ticketId()) {
-      await this.cargar();
       this.iniciarSondeo();
+      await this.cargar();
     }
   },
 
@@ -174,12 +177,6 @@ export default {
         Evento: `Estado: ${item.previous_status} → ${item.new_status}${motivo}`,
       });
     });
-    (t.comments || []).forEach(c => eventos.push({
-      _orden: c.created_at,
-      Fecha: fecha(c.created_at),
-      Quién: c.author_name || '—',
-      Evento: `${c.is_internal_note ? 'Nota interna' : 'Respuesta al colaborador'}: ${c.content.slice(0, 80)}${c.content.length > 80 ? '…' : ''}`,
-    }));
     return eventos.sort((a, b) => new Date(a._orden) - new Date(b._orden)).map(({ _orden, ...e }) => e);
   },
 
@@ -317,7 +314,8 @@ export default {
   },
 
   ticketCerrado() {
-    return TicketQuery.data?.status === 'CLOSED';
+    const st = TicketQuery.data?.status;
+    return st === 'CLOSED' || st === 'RESOLVED';
   },
 
   escaparHtml(t) {
@@ -339,6 +337,7 @@ export default {
   },
 
   hiloHtml() {
+    const raw = MensajesQuery.data;
     const estilos = '<style>'
       + 'body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:8px;background:#F8FAFC;color:#0F172A;font-size:13px}'
       + '.m{max-width:85%;padding:8px 10px;margin:6px 0;border-radius:8px;border:1px solid #E2E8F0;background:#FFFFFF}'
@@ -349,7 +348,11 @@ export default {
       + '.txt{white-space:pre-wrap;word-wrap:break-word}'
       + '.vacio{color:#64748B;text-align:center;margin-top:40px}'
       + '</style>';
-    const datos = this.datosMensajes();
+    let datos = raw;
+    if (typeof datos === 'string') {
+      try { datos = JSON.parse(datos); } catch (e) { datos = null; }
+    }
+    datos = datos && Array.isArray(datos.items) ? datos : null;
     let cuerpo;
     if (!datos) {
       const fallo = /^[45]/.test(String(MensajesQuery.responseMeta?.statusCode || ''));
@@ -363,10 +366,10 @@ export default {
       } else {
         cuerpo = items.map(m => {
           const mio = (m.author_id && m.author_id === appsmith.store.user?.id);
-      const rol = m.from_reporter ? 'Colaborador' : 'Soporte';
-      const nombre = mio ? 'Tú' : `${this.escaparHtml(m.author_name || rol)} · ${rol}`;
-      const ia = m.is_ai_generated ? ' · Respuesta validada' : '';
-      const cabecera = `${nombre}${ia}`;
+          const rol = m.from_reporter ? 'Colaborador' : 'Soporte';
+          const nombre = mio ? 'Tú' : `${this.escaparHtml(m.author_name || rol)} · ${rol}`;
+          const ia = m.is_ai_generated ? ' · Respuesta validada' : '';
+          const cabecera = `${nombre}${ia}`;
           const nota = m.is_internal_note;
           const etiqueta = nota ? '<span class="eti">Nota interna · no visible para el colaborador</span>' : '';
           const clases = 'm' + (mio ? ' yo' : '') + (nota ? ' nota' : '');
@@ -382,26 +385,49 @@ export default {
       await this.ejecutar(MensajesQuery, { id: this.ticketId() });
       return true;
     } catch (e) {
-      if (this.esCodigo(MensajesQuery, 401)) await Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+      if (this.esCodigo(MensajesQuery, 401)) {
+        clearInterval('sondeoMensajes');
+        await Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+      }
       return false;
     }
   },
 
-  // Sondeo silencioso: refresca el ticket (por si se cerró) y la conversación.
-  async refrescarMensajes() {
-    if (appsmith.mode === 'EDIT' || !appsmith.store.accessToken || !this.ticketId()) return;
-    try {
-      await this.ejecutar(TicketQuery, { id: this.ticketId() });
-    } catch (e) {
-      if (this.esCodigo(TicketQuery, 401)) return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+  // Sondeo silencioso: refresca la conversación cada 8 s y el ticket cada 3 vueltas (~24 s).
+  async refrescarMensajes(forzarTicket = false) {
+    if (!appsmith.store.accessToken || !this.ticketId()) {
+      clearInterval('sondeoMensajes');
+      return;
     }
-    await this.cargarMensajes();
+    if (this._sondeando) return;
+    this._sondeando = true;
+    try {
+      this._ticksSondeo = (this._ticksSondeo || 0) + 1;
+      const refrescarTicket = Boolean(forzarTicket) || this._ticksSondeo % 3 === 0;
+      if (refrescarTicket) {
+        try {
+          await this.ejecutar(TicketQuery, { id: this.ticketId() });
+        } catch (e) {
+          if (this.esCodigo(TicketQuery, 401)) {
+            clearInterval('sondeoMensajes');
+            return Sesion.expulsar('Tu sesión expiró. Vuelve a iniciar sesión.');
+          }
+        }
+      }
+      await this.cargarMensajes();
+      if (this.esCodigo(MensajesQuery, 401)) {
+        clearInterval('sondeoMensajes');
+      }
+    } finally {
+      this._sondeando = false;
+    }
   },
 
   iniciarSondeo() {
-    if (appsmith.mode === 'EDIT') return;
     clearInterval('sondeoMensajes');
-    setInterval(() => Hitl.refrescarMensajes(), 45000, 'sondeoMensajes');
+    if (!appsmith.store.accessToken || !this.ticketId()) return;
+    this._ticksSondeo = 0;
+    setInterval(() => Hitl.refrescarMensajes(), 8000, 'sondeoMensajes');
   },
 
   mensajeErrorEnvio() {
@@ -418,7 +444,7 @@ export default {
     }
     if (codigo.startsWith('403')) return (d && d.detail) || 'No tienes permiso para escribir en este ticket.';
     if (codigo.startsWith('404')) return 'El ticket ya no existe.';
-    if (codigo.startsWith('409')) return (d && d.detail) || 'Este ticket está cerrado y ya no admite mensajes.';
+    if (codigo.startsWith('409')) return (d && d.detail) || 'Este ticket no admite nuevos mensajes en su estado actual.';
     return (d && d.detail) || 'No pudimos enviar tu mensaje. Inténtalo de nuevo.';
   },
 
@@ -433,7 +459,10 @@ export default {
       return;
     }
     if (this.ticketCerrado()) {
-      showAlert('Este ticket está cerrado y ya no admite mensajes.', 'warning');
+      const aviso = TicketQuery.data?.status === 'RESOLVED'
+        ? 'Este ticket está resuelto y no admite nuevos mensajes hasta que sea reabierto.'
+        : 'Este ticket está cerrado y no admite nuevos mensajes.';
+      showAlert(aviso, 'warning');
       return;
     }
     const interna = Boolean(SwNotaInterna.isSwitchedOn) && this.tienePermiso('tickets:manage');

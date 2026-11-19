@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 5,
+  "bottomRow": 36,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -14,6 +14,9 @@
     },
     {
       "key": "isVisible"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -24,7 +27,7 @@
   "isLoading": false,
   "isVisible": "{{Hitl.ticketCerrado()}}",
   "key": "pldkbcxrtq",
-  "leftColumn": 24,
+  "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -35,12 +38,12 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 42,
+  "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Ticket cerrado: no admite mensajes.",
-  "textAlign": "RIGHT",
+  "text": "{{TicketQuery.data?.status === 'RESOLVED' ? 'Este ticket está resuelto y no admite nuevos mensajes hasta que sea reabierto.' : 'Este ticket está cerrado y no admite nuevos mensajes.'}}",
+  "textAlign": "LEFT",
   "textColor": "#B45309",
-  "topRow": 1,
+  "topRow": 32,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
