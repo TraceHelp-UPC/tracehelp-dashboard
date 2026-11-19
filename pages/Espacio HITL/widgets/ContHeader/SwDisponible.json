@@ -1,0 +1,58 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "isLoading": false,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 5.025390625,
+  "parentId": "kgk2zinitx",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "version": 1,
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "alignWidget": "LEFT",
+  "bottomRow": 6,
+  "topRow": 2,
+  "leftColumn": 25,
+  "rightColumn": 29,
+  "defaultSwitchState": "{{appsmith.store.user?.availability_status !== 'UNAVAILABLE'}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultSwitchState"
+    },
+    {
+      "key": "isVisible"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onChange"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "inputType": "SWITCH",
+  "isDirty": false,
+  "isDisabled": "{{DisponibilidadQuery.isLoading}}",
+  "isVisible": "{{Hitl.puedeAtenderL1()}}",
+  "isSwitchedOn": false,
+  "key": "l4h6xm51xl",
+  "label": "",
+  "labelPosition": "Left",
+  "labelTextSize": "0.875rem",
+  "onChange": "{{ Hitl.cambiarDisponibilidad(SwDisponible.isSwitchedOn) }}",
+  "type": "SWITCH_WIDGET",
+  "widgetId": "xere4kfz3w",
+  "widgetName": "SwDisponible"
+}

@@ -1,0 +1,52 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "isLoading": false,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 5.025390625,
+  "parentId": "kgk2zinitx",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "version": 1,
+  "bottomRow": 7,
+  "topRow": 4,
+  "leftColumn": 29,
+  "rightColumn": 41,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "0.75rem",
+  "fontStyle": "",
+  "isVisible": "{{Hitl.puedeAtenderL1()}}",
+  "key": "iq0hvgikfh",
+  "overflow": "NONE",
+  "shouldTruncate": false,
+  "text": "{{ 'Tickets en atención: ' + (appsmith.store.cargaL1 ?? '—') }}",
+  "textAlign": "LEFT",
+  "textColor": "#64748B",
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "widgetId": "m0kjynrvaw",
+  "widgetName": "TxtCargaL1"
+}
