@@ -4,6 +4,9 @@
   "bottomRow": 8,
   "dynamicBindingPathList": [
     {
+      "key": "text"
+    },
+    {
       "key": "truncateButtonColor"
     },
     {
@@ -34,7 +37,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Límite máximo por archivo: 25 MB · La ingesta se procesa en segundo plano",
+  "text": "{{appsmith.store.progresoKb || 'Límite máximo por archivo: 25 MB · Hasta 10 archivos por tanda · La ingesta se procesa en segundo plano'}}",
   "textAlign": "CENTER",
   "textColor": "#64748B",
   "topRow": 5,
