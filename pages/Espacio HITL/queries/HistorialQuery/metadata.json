@@ -47,7 +47,7 @@
     ],
     "name": "HistorialQuery",
     "pageId": "Espacio HITL",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }
