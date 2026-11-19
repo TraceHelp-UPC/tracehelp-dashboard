@@ -1,0 +1,55 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 46,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    },
+    {
+      "key": "isVisible"
+    },
+    {
+      "key": "textColor"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "0.75rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": "{{!Hitl.ticketCerrado()}}",
+  "key": "c7ltxzo97n",
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "overflow": "NONE",
+  "parentColumnSpace": 19.546875,
+  "parentId": "uzyc8zfjjo",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 40,
+  "shouldTruncate": false,
+  "text": "{{(InputMensaje.text || '').length}}/2000 · {{SwNotaInterna.isSwitchedOn ? 'Nota interna: el colaborador NO la verá' : 'Mensaje visible para el colaborador'}}",
+  "textAlign": "LEFT",
+  "textColor": "{{SwNotaInterna.isSwitchedOn ? '#B45309' : '#64748B'}}",
+  "topRow": 43,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "jdw8pt00uh",
+  "widgetName": "TxtContador"
+}

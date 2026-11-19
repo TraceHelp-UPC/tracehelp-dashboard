@@ -1,0 +1,47 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "isLoading": false,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 5.025390625,
+  "parentId": "uzyc8zfjjo",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "version": 1,
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "alignWidget": "RIGHT",
+  "bottomRow": 5,
+  "topRow": 1,
+  "leftColumn": 42,
+  "rightColumn": 62,
+  "defaultSwitchState": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "dynamicHeight": "FIXED",
+  "inputType": "SWITCH",
+  "isDirty": false,
+  "isDisabled": false,
+  "isVisible": "{{Hitl.tienePermiso('tickets:manage')}}",
+  "isSwitchedOn": false,
+  "key": "ooxxqtwio2",
+  "label": "Nota interna",
+  "labelPosition": "Left",
+  "labelTextSize": "0.875rem",
+  "type": "SWITCH_WIDGET",
+  "widgetId": "cltnk23f59",
+  "widgetName": "SwNotaInterna"
+}
