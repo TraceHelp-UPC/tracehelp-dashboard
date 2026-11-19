@@ -1,0 +1,15 @@
+{
+  "id": "Usuarios y Roles_Sesion",
+  "unpublishedCollection": {
+    "name": "Sesion",
+    "pageId": "Usuarios y Roles",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROL_DE_ESTA_APP",
+        "value": "'DASHBOARD'"
+      }
+    ]
+  }
+}

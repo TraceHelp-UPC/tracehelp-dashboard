@@ -1,0 +1,78 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 17,
+  "boxShadow": "none",
+  "defaultOptionValue": "{{ appsmith.store.usuarioEdicion?.role }}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultOptionValue"
+    },
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "defaultOptionValue"
+    },
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "onOptionChange"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onOptionChange"
+    }
+  ],
+  "isDisabled": "{{ appsmith.store.usuarioEdicion?.id === appsmith.store.user?.id }}",
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "kusrselect035",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Rol",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "onOptionChange": "{{ resetWidget('SelectGrupoEditar', true) }}",
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 19.8125,
+  "parentId": "usrcvmoda031",
+  "parentRowSpace": 10,
+  "placeholderText": "Selecciona un rol",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "serverSideFiltering": false,
+  "sourceData": "{{ [{\"label\": \"Colaborador\", \"value\": \"COLLABORATOR\"}, {\"label\": \"Analista de Soporte L1\", \"value\": \"ANALYST_L1\"}, {\"label\": \"Especialista L2\", \"value\": \"SPECIALIST_L2\"}, {\"label\": \"Líder de TI\", \"value\": \"IT_LEADER\"}] }}",
+  "topRow": 11,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "usrselect035",
+  "widgetName": "SelectRolEditar"
+}

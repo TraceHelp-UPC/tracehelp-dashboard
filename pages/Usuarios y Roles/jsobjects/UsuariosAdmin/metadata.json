@@ -1,0 +1,27 @@
+{
+  "id": "Usuarios y Roles_UsuariosAdmin",
+  "unpublishedCollection": {
+    "name": "UsuariosAdmin",
+    "pageId": "Usuarios y Roles",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ROLES",
+        "value": "{\n  COLLABORATOR: 'Colaborador',\n  ANALYST_L1: 'Analista de Soporte L1',\n  SPECIALIST_L2: 'Especialista L2',\n  IT_LEADER: 'Líder de TI'\n}"
+      },
+      {
+        "name": "GRUPOS",
+        "value": "{\n  REDES: 'Redes',\n  APLICACIONES: 'Aplicaciones',\n  INFRAESTRUCTURA: 'Infraestructura',\n  SEGURIDAD: 'Seguridad'\n}"
+      },
+      {
+        "name": "ID_BUSQUEDA",
+        "value": "'busqueda-usuarios'"
+      },
+      {
+        "name": "guardando",
+        "value": "false"
+      }
+    ]
+  }
+}
