@@ -26,7 +26,11 @@ export default {
     try {
       res = await LoginQuery.run();
     } catch (e) {
-      const detalle = LoginQuery.data && LoginQuery.data.detail;
+      let data = LoginQuery.data;
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch (err) { data = null; }
+      }
+      const detalle = data && data.detail;
       showAlert(detalle || 'No pudimos conectar con el servidor. Intenta de nuevo en unos segundos.', 'error');
       return;
     }
