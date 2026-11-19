@@ -11,7 +11,7 @@
           "value": "application/json"
         }
       ],
-      "body": "{{ JSON.stringify(this.params.datos) }}",
+      "body": "{{ this.params.datos }}",
       "bodyFormData": [],
       "encodeParamsToggle": true,
       "formData": {
