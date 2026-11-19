@@ -1,0 +1,38 @@
+{
+  "animateLoading": true,
+  "borderColor": "#E2E8F0",
+  "borderOpacity": 100,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "borderWidth": 1,
+  "bottomRow": 32,
+  "boxShadow": "none",
+  "dynamicBindingPathList": [
+    {
+      "key": "srcDoc"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "ci2356yjn1",
+  "leftColumn": 2,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 1,
+  "parentId": "uzyc8zfjjo",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "source": "",
+  "srcDoc": "{{Hitl.hiloHtml()}}",
+  "title": "Conversación del ticket",
+  "topRow": 6,
+  "type": "IFRAME_WIDGET",
+  "version": 1,
+  "widgetId": "q0mwovo1uk",
+  "widgetName": "IfrHilo"
+}
