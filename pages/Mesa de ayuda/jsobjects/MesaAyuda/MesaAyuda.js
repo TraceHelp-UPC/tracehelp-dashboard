@@ -6,6 +6,13 @@ export default {
     return (appsmith.store.user?.permissions || []).includes('tickets:manage');
   },
 
+  // Transitorio (D18): 'tickets:attend_l1' aún no existe en el backend; mientras tanto
+  // 'tickets:escalate' (solo analista L1) lo sustituye. T82 lo reemplaza por 'tickets:attend_l1'.
+  puedeAtenderL1() {
+    const permisos = appsmith.store.user?.permissions || [];
+    return permisos.includes('tickets:attend_l1') || permisos.includes('tickets:escalate');
+  },
+
   scope() {
     return this.PESTANAS[TabsBandeja.selectedTab] || 'mine';
   },
@@ -30,7 +37,9 @@ export default {
       navigateTo('Inicio');
       return;
     }
-    await this.refrescar();
+    // Las métricas van primero: pueden venir invalidadas desde Espacio HITL.
+    await this.metricas();
+    await this.cargar();
     clearInterval(this.ID_REFRESCO);
     setInterval(() => this.refrescar(), 60000, this.ID_REFRESCO);
   },
@@ -162,7 +171,9 @@ export default {
     const filtros = SelectPrioridad.selectedOptionValue || (InputBuscar.text || '').trim();
     if (filtros) return 'Ningún ticket coincide con los filtros.';
     return {
-      mine: 'No tienes tickets asignados. Toma uno desde Pendientes de asignación.',
+      mine: this.puedeAtenderL1()
+        ? 'No tienes tickets asignados. Toma uno desde Pendientes de asignación.'
+        : 'Abre la pestaña Escalados para ver los tickets de Nivel 2.',
       unassigned: 'No hay tickets esperando asignación.',
       escalated: 'No hay tickets escalados a Nivel 2.',
     }[this.scope()];
